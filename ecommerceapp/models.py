@@ -1,13 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 import uuid
+from cloudinary.models import CloudinaryField
+
 
 
 
 class Product(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=50)
-    image = models.ImageField()
+    image = CloudinaryField('image')
     price = models.IntegerField(default=0)
     category = models.CharField(max_length=100,choices=[('TSHIRT', 'T-Shirt'), ('SHOES', 'Shoes'),('JEAN', 'jean'),('SHRUGS', 'Shrugs')])
 
